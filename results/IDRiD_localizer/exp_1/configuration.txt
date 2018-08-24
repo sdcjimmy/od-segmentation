@@ -1,0 +1,6 @@
+IDRiD_localizer: exp_1
+N_epochs = 1
+batch_size = 1
+optimizer = rmsprop
+metrics = mse
+learning rate = 0.01

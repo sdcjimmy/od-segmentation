@@ -34,18 +34,18 @@ def get_data_training(DRIVE_train_imgs_original,
     #check masks are within 0-1
     assert(np.min(train_masks)==0 and np.max(train_masks)==1)
 
-    print "\ntrain images/masks shape:"
-    print train_imgs.shape
-    print "train images range (min-max): " +str(np.min(train_imgs)) +' - '+str(np.max(train_imgs))
-    print "train masks are within 0-1\n"
+    print("\ntrain images/masks shape:")
+    print(train_imgs.shape)
+    print("train images range (min-max): " +str(np.min(train_imgs)) +' - '+str(np.max(train_imgs)))
+    print("train masks are within 0-1\n")
 
     #extract the TRAINING patches from the full images
     patches_imgs_train, patches_masks_train = extract_random(train_imgs,train_masks,patch_height,patch_width,N_subimgs,inside_FOV)
     data_consistency_check(patches_imgs_train, patches_masks_train)
 
-    print "\ntrain PATCHES images/masks shape:"
-    print patches_imgs_train.shape
-    print "train PATCHES images range (min-max): " +str(np.min(patches_imgs_train)) +' - '+str(np.max(patches_imgs_train))
+    print("\ntrain PATCHES images/masks shape:")
+    print(patches_imgs_train.shape)
+    print("train PATCHES images range (min-max): " +str(np.min(patches_imgs_train)) +' - '+str(np.max(patches_imgs_train)))
 
     return patches_imgs_train, patches_masks_train#, patches_imgs_test, patches_masks_test
 
@@ -70,19 +70,19 @@ def get_data_testing(DRIVE_test_imgs_original, DRIVE_test_groudTruth, Imgs_to_te
     #check masks are within 0-1
     assert(np.max(test_masks)==1  and np.min(test_masks)==0)
 
-    print "\ntest images/masks shape:"
-    print test_imgs.shape
-    print "test images range (min-max): " +str(np.min(test_imgs)) +' - '+str(np.max(test_imgs))
-    print "test masks are within 0-1\n"
+    print("\ntest images/masks shape:")
+    print(test_imgs.shape)
+    print("test images range (min-max): " +str(np.min(test_imgs)) +' - '+str(np.max(test_imgs)))
+    print("test masks are within 0-1\n")
 
     #extract the TEST patches from the full images
     patches_imgs_test = extract_ordered(test_imgs,patch_height,patch_width)
     patches_masks_test = extract_ordered(test_masks,patch_height,patch_width)
     data_consistency_check(patches_imgs_test, patches_masks_test)
 
-    print "\ntest PATCHES images/masks shape:"
-    print patches_imgs_test.shape
-    print "test PATCHES images range (min-max): " +str(np.min(patches_imgs_test)) +' - '+str(np.max(patches_imgs_test))
+    print("\ntest PATCHES images/masks shape:")
+    print(patches_imgs_test.shape)
+    print("test PATCHES images range (min-max): " +str(np.min(patches_imgs_test)) +' - '+str(np.max(patches_imgs_test)))
 
     return patches_imgs_test, patches_masks_test
 

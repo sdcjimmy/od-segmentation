@@ -4,12 +4,24 @@ from PIL import Image
 from matplotlib import pyplot as plt
 
 def load_hdf5(infile):
-  with h5py.File(infile,"r") as f:  #"with" close the file after its nested commands
-    return f["image"][()]
+    with h5py.File(infile,"r") as f:  #"with" close the file after its nested commands
+        return f["image"][()]
 
 def write_hdf5(arr,outfile):
-  with h5py.File(outfile,"w") as f:
-    f.create_dataset("image", data=arr, dtype=arr.dtype)
+    with h5py.File(outfile,"w") as f:
+        f.create_dataset("image", data=arr, dtype=arr.dtype)
+        
+def show_img(img, center = None):
+    """
+    show the imgs
+    imgs: the imgs array
+    center: tuple, representing the position of the optic disc center
+    """
+    plt.figure()
+    plt.imshow(img)
+    if not center == None:
+        plt.scatter(center[0], center[1], s=50, c='red', marker='o')
+    plt.show()
 
 #convert RGB image in black and white
 def rgb2gray(rgb):
@@ -85,7 +97,7 @@ def pred_to_imgs(pred, patch_height, patch_width, mode="original"):
                 else:
                     pred_images[i,pix]=0
     else:
-        print "mode " +str(mode) +" not recognized, it can be 'original' or 'threshold'"
+        print("mode " +str(mode) +" not recognized, it can be 'original' or 'threshold'")
         exit()
     pred_images = np.reshape(pred_images,(pred_images.shape[0],1, patch_height, patch_width))
     return pred_images
